@@ -1,6 +1,6 @@
 # Knowledge Base files
-knowledge_base/data/*
-knowledge_data/*
+src/knowledge_base/data/*
+src/knowledge_data/*
 
 .vscode/
 *.env
