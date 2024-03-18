@@ -1,6 +1,6 @@
 # AppriCog - an Engine to create cognitive applications 
 
-<p>AppriCog is an innovative SDK designed to empower developers in rapidly creating production-ready Generative AI applications with ease. This framework seamlessly integrates technologies like [FastAPI] (https://github.com/tiangolo/fastapi) for building APIs, [Langchain] (https://github.com/langchain-ai/langchain) for cognitive backend processing, and a chatbot interface, enabling developers to build sophisticated AI-powered solutions effortlessly.<p>
+AppriCog is an innovative SDK designed to empower developers in rapidly creating production-ready Generative AI applications with ease. This framework seamlessly integrates technologies like [FastAPI](https://github.com/tiangolo/fastapi) for building APIs, [Langchain](https://github.com/langchain-ai/langchain) for cognitive backend processing, and a chatbot interface, enabling developers to build sophisticated AI-powered solutions effortlessly.
 
 ## Key Features:
 
