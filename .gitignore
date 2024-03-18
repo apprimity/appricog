@@ -1,3 +1,10 @@
+# Knowledge Base files
+knowledge_base/data/*
+knowledge_data/*
+
+.vscode/
+*.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
