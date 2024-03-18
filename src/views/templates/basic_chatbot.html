@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="{{assets_url_prefix}}/simple_styles.css" rel="stylesheet">
+  <title>{{title}}</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+  <div class="chat-container">
+    <h1>{{title}}</h1>
+    <form id="chat-form" class="chat-form">
+      <input type="text" id="user-input" class="user-input" name="user_input" placeholder="Type your message..." />
+      <button type="submit" id="submitBtn" class="submitBtn">Send</button>
+    </form>
+    <div id="result" class="result">
+      <div id="loader" class="loader" \></div>
+
+    </div>
+
+    <script>
+      //window.onload = function () {    
+      document.getElementById("loader").style.display = "none";
+      document
+        .getElementById("submitBtn")
+        .addEventListener("click", function (event) {
+          // Prevent the form from submitting and refreshing the page      
+          event.preventDefault();
+
+          let userInput = document.getElementById("user-input").value;
+          let url = `{{base_url_prefix}}/chat?message=${encodeURIComponent(userInput)}`;
+          document.getElementById("loader").style.display = "block";
+
+          fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+              let resultDiv = document.getElementById("result");
+              let result = JSON.stringify(data.response.output);
+              result = result.replace(/\\n/g, '&#10;');
+              resultDiv.innerHTML = `
+            <div class="chat-question"> <b>Question:</b> ${userInput} </div>
+            <div class="chat-answer" style="white-space:pre-wrap"><b>Response:</b> ${result}<br>
+            </div><br><br> ${resultDiv.innerHTML}`;
+              document.getElementById("loader").style.display = "none";
+            })
+            .catch((error) => {
+              console.error("Error occured while processing a response:", error);
+              document.getElementById("loader").style.display = "none";
+            });
+        });
+      //};  
+    </script>
+</body>
+</html>

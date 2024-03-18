@@ -1,0 +1,13 @@
+fastapi
+langchain
+langchain-community
+huggingface_hub
+transformers
+sentence-transformers
+wikipedia
+openai
+tiktoken
+uvicorn
+jinja2
+chromadb
+pypdf
