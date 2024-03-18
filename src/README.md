@@ -25,7 +25,7 @@ To run this SDK, you need Python 3.8 or later.
 * Clone the repository to your local machine:
 
 ```
-git clone https://github.com/your-username/AppriCog.git
+git clone https://github.com/apprimity/appricog.git
 ```
 
 * Install packages
