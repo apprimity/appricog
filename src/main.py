@@ -4,7 +4,7 @@ from routers.demo_login_router import router as demo_login_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from util.environment import base_url_prefix, app_title
+from util.environment import base_url_prefix, app_title, session_key, session_cookie
 from starlette.middleware.sessions import SessionMiddleware
 
 
@@ -29,8 +29,8 @@ def create_app():
     # Session middleware to auto login with the help of a cookie
     app.add_middleware(
         SessionMiddleware,
-        secret_key="$3cret_K3y",
-        session_cookie="3cret_c00k13",
+        secret_key=session_key,
+        session_cookie=session_cookie,
         # session_ttl=3600,  # Session TTL in seconds (e.g., 1 hour)
     )
 

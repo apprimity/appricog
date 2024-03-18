@@ -20,8 +20,10 @@ max_token_limit = os.environ.get("MAX_TOKEN_LIMIT", "300")
 max_execution_time = os.environ.get("MAX_EXECUTION_TIME", "5")
 early_stopping_enabled = os.environ.get("EARLY_STOPPING_ENABLED", "false")
 cypher_return_limit = os.environ.get("CYPHER_RETURN_LIMIT", "")
-app_title = os.environ.get("APP_TITLE", "LLM Framework")
+app_title = os.environ.get("APP_TITLE", "AppriCog Engine")
 debug_enabled = os.environ.get("DEBUG", "false")
+session_key = os.environ.get("SESSION_SECRET_KEY", "")
+session_cookie = os.environ.get("SESSION_COOKIE", "")
 
 # Variables derived from environment variables
 is_prod = True if env_config.lower() == "prod" else False
