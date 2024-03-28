@@ -57,11 +57,22 @@ uvicorn main:app
    - `src\knowledge_base\data`: Folder containing the Chroma Vector DB persist files
    - `src\documents`: Folder containing the documents needed for RAG
 9. After pasting all the files needed for your RAG chain into the **_src\documents_** folder, use the **_loadData_** API endpoint to load it into the Chroma Vector DB and persist it into the **_src\knowledge_base\data_** folder.
+10. Pre-built chatbot interface accessible at [http://localhost:7889/chatbot](http://localhost:7889/chatbot) endpoint will now be able to answer questions on the documents uploaded in step 9 above.
+11. This chat functionality will also be available on API endpoints as below:
+   - `\chat-message`: To fetch chat response as a **_message string_**
+      ```
+      curl -X 'GET' 'http://localhost:7889/chat-message?message=summarize%20in%20less%20than%20100%20words%20the%20content%20provided%20in%20context' -u johndoe:
+      ```
+   - `\chat`:: To fetch chat response as a **_tuple of response and chain of thought_**
+      ```
+      curl -X 'GET' 'http://localhost:7889/chat?message=summarize%20in%20less%20than%20100%20words%20the%20content%20provided%20in%20context' -H 'accept: application/json' -u johndoe: 
+      ```     
 
 ## Please Note
 
 1. This SDK is primarily created to help developers quickly create production-worthy LLM-powered applications.
 2. Langchain is the main cognitive backend supported in this SDK, with plans to add support for other LLM frameworks in the future.
-3. If you haven't already, check out [Langchain](https://github.com/langchain-ai/langchain). It's one of the best things that happened to the world since the Internet!
-4. Please follow the guidance from Langchain repositories while setting up your developer machines for the required environment variables.
+3. Above curl commands, leverage HTTP basic authentication using fake user `johndoe` available as a demo user. For an instance of AppriCog running in production, these users will be fetched from a database. A thorough security module that provides user maintenance is currently being worked upon. 
+4. If you haven't already, check out [Langchain](https://github.com/langchain-ai/langchain). It's one of the best things that happened to the world since the Internet!
+5. Please follow the guidance from Langchain repositories while setting up your developer machines for the required environment variables.
    
