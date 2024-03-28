@@ -536,8 +536,8 @@ Bounce
   margin: auto;
   z-index: 10;
   box-shadow: 2px 10px 40px rgba(22, 20, 19, 0.4);
-  transform: translateX(300px);
-   /* -webkit-transition: 0.3s all ease-out 0.1s, transform 0.2s ease-in;
+  /* transform: translateX(300px);
+   -webkit-transition: 0.3s all ease-out 0.1s, transform 0.2s ease-in;
    -moz-transition: 0.3s all ease-out 0.1s, transform 0.2s ease-in; */
 }
 

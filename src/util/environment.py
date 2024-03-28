@@ -24,6 +24,7 @@ app_title = os.environ.get("APP_TITLE", "AppriCog Engine")
 debug_enabled = os.environ.get("DEBUG", "false")
 session_key = os.environ.get("SESSION_SECRET_KEY", "")
 session_cookie = os.environ.get("SESSION_COOKIE", "")
+documents_dir = os.environ.get("DOCUMENTS_DIRECTORY", "documents")
 
 # Variables derived from environment variables
 is_prod = True if env_config.lower() == "prod" else False
@@ -32,7 +33,9 @@ is_early_stopping_enabled = True if early_stopping_enabled.lower() == "true" els
 is_cypher_return_limit_enabled = True if cypher_return_limit != "" else False
 is_local_model = True if use_local_model.lower() == "true" else False
 is_debug = True if debug_enabled.lower() == "true" else False
-chroma_db_file = os.getenv("VECTOR_STORE", os.path.join("knowledge_base", "data"))
+knowledge_base_dir = os.getenv(
+    "KNOWLEDGE_BASE_DIRECTORY", os.path.join("knowledge_base", "data")
+)
 cypher_limit_query = (
     (" limit " + cypher_return_limit) if is_cypher_return_limit_enabled else ""
 )

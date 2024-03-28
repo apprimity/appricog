@@ -12,40 +12,45 @@ import os
 def refresh_knowledge_base() -> list:
     # Set knowledge base directory
     result = list()
-    directory = "knowledge_data"
+    documents_directory = env.documents_dir
     vector_db = None
-    persist_directory = os.path.join("knowledge_base", "data")
+    persist_directory = env.knowledge_base_dir
     embeddings = embedding_model
 
-    # Iterate over files in above directory
-    for filename in os.listdir(directory):
-        f = os.path.join(directory, filename)
+    # Create the directory if it doesn't exist
+    if not os.path.exists(documents_directory):
+        os.makedirs(documents_directory)
 
-        # Check if it is a file
-        if os.path.isfile(f):
-            # PDF Loader
-            if f.endswith(".pdf"):
-                loader = PyPDFLoader(f)
-                docs = loader.load_and_split()
-                logger.info("embedded", f)
-            elif f.endswith(".txt"):  # Text Loader
-                loader = TextLoader(f, encoding="utf-8")
-                docs = loader.load_and_split()
-                logger.info("embedded", f)
-            try:
-                # Initialize Chroma VectorDB or add documents as needed
-                if not vector_db:
-                    vector_db = Chroma.from_documents(
-                        documents=docs,
-                        embedding=embeddings,
-                        persist_directory=persist_directory,
-                    )
-                    # Persist vector DB
-                    vector_db.persist()
-                else:
-                    vector_db.add_documents(docs)
-                result.append(f + " --> Vectorization Status " + "Success")
-            except Exception as e:
-                result.append(f + " --> Vectorization Status " + "Error")
+    # Iterate over files in documents directory
+    if os.path.isdir(documents_directory):
+        for filename in os.listdir(documents_directory):
+            f = os.path.join(documents_directory, filename)
+
+            # Check if it is a file
+            if os.path.isfile(f):
+                # PDF Loader
+                if f.endswith(".pdf"):
+                    loader = PyPDFLoader(f)
+                    docs = loader.load_and_split()
+                    logger.info("embedded", f)
+                elif f.endswith(".txt"):  # Text Loader
+                    loader = TextLoader(f, encoding="utf-8")
+                    docs = loader.load_and_split()
+                    logger.info("embedded", f)
+                try:
+                    # Initialize Chroma VectorDB or add documents as needed
+                    if not vector_db:
+                        vector_db = Chroma.from_documents(
+                            documents=docs,
+                            embedding=embeddings,
+                            persist_directory=persist_directory,
+                        )
+                        # Persist vector DB
+                        vector_db.persist()
+                    else:
+                        vector_db.add_documents(docs)
+                    result.append(f + " --> Vectorization Status " + "Success")
+                except Exception as e:
+                    result.append(f + " --> Vectorization Status " + "Error")
 
     return result
