@@ -65,6 +65,12 @@ def execute_chain_from_engine(message, current_user=None):
 def get_response(message: str, current_user):
     """Get response from extracted json"""
     response, thought = execute_chain_from_engine(message, current_user)
+
+    # Return the response as-is if a string
+    if isinstance(response, str):
+        return {"response": response}
+
+    # Return the output portion from response
     return {"response": response["output"]}
 
 
