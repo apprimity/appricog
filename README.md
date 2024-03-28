@@ -55,8 +55,8 @@ uvicorn main:app
 7. If you need to create a new inference engine, add a new subclass accordingly into this directory and use it in the `inference_router.py` file.
 8. The prebuilt RAG chain relies on the following folder structure to be available:
    - `src\knowledge_base\data`: Folder containing the Chroma Vector DB persist files
-   - `src\knowledge_data`: Folder containing the documents needed for RAG
-9. After pasting all the files needed for your RAG chain into the **_src\knowledge_data_** folder, use the **_loadData_** API endpoint to load it into the Chroma Vector DB and persist it into the **_src\knowledge_base\data_** folder.
+   - `src\documents`: Folder containing the documents needed for RAG
+9. After pasting all the files needed for your RAG chain into the **_src\documents_** folder, use the **_loadData_** API endpoint to load it into the Chroma Vector DB and persist it into the **_src\knowledge_base\data_** folder.
 
 ## Please Note
 

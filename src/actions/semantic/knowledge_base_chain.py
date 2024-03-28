@@ -61,14 +61,14 @@ class LLMKnowledgeBaseChain(BaseSemanticAction):
         super().__init__(*args, **kwargs)
 
         # Fetch the retriever based on configured vector store
-        logger.info("vector store folder: " + env.chroma_db_file)
+        logger.info("vector store folder: " + env.knowledge_base_dir)
         self.chroma_db = Chroma(
-            persist_directory=env.chroma_db_file,
+            persist_directory=env.knowledge_base_dir,
             embedding_function=self.embeddings,
             client_settings=Settings(
                 anonymized_telemetry=False,
                 # chroma_db_impl="duckdb+parquet",
-                persist_directory=env.chroma_db_file,
+                persist_directory=env.knowledge_base_dir,
                 is_persistent=True,
             ),
         )
