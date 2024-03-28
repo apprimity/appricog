@@ -63,7 +63,7 @@ uvicorn main:app
       ```
       curl -X 'GET' 'http://localhost:7889/chat-message?message=summarize%20in%20less%20than%20100%20words%20the%20content%20provided%20in%20context' -u johndoe:
       ```
-   - `\chat`:: To fetch chat response as a **_tuple of response and chain of thought_**
+   - `\chat`: To fetch chat response as a **_json with response and chain of thought_**
       ```
       curl -X 'GET' 'http://localhost:7889/chat?message=summarize%20in%20less%20than%20100%20words%20the%20content%20provided%20in%20context' -H 'accept: application/json' -u johndoe: 
       ```     
@@ -72,7 +72,7 @@ uvicorn main:app
 
 1. This SDK is primarily created to help developers quickly create production-worthy LLM-powered applications.
 2. Langchain is the main cognitive backend supported in this SDK, with plans to add support for other LLM frameworks in the future.
-3. Above curl commands, leverage HTTP basic authentication using fake user `johndoe` available as a demo user. For an instance of AppriCog running in production, these users will be fetched from a database. A thorough security module that provides user maintenance is currently being worked upon. 
+3. Above curl commands, leverage HTTP basic authentication using fake user `johndoe` available as a demo user. For an instance of AppriCog running in production, these users will be fetched from a database. A security module that provides more robust user maintenance and access control is currently being worked upon. 
 4. If you haven't already, check out [Langchain](https://github.com/langchain-ai/langchain). It's one of the best things that happened to the world since the Internet!
 5. Please follow the guidance from Langchain repositories while setting up your developer machines for the required environment variables.
    
